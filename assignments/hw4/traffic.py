@@ -13,7 +13,6 @@ def main():
 
     num_roads = eval(input("How many roads were surveyed?: "))
     tot_vehicles = 0
-    average_cars = 0
     for x in range(num_roads):
         days = eval(input("how many days was road " + str(x + 1) + " surveyed? "))
         acc = 0
