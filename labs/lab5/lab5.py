@@ -4,7 +4,7 @@ Lab5.py
 """
 
 from graphics import *
-import math
+
 
 
 def target():
