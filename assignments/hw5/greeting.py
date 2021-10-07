@@ -8,13 +8,25 @@ a moving arrow using a loop function.
 Certification of authenticity:
 I certify that this assignment is entirely my own work.
 """
-from graphics import *
+import time
+from graphics import GraphWin, Circle, Point, Line, Polygon, Text
 
 win = GraphWin('Circle', 400, 400)
 win.setBackground('white')
 win.setCoords(10, 10, 20, 20)
 
-    # diamond
+# arrow
+head1 = Point(12.431077694235588, 18.646616541353385)
+head2 = Point(12.406015037593985, 18.145363408521302)
+head3 = Point(11.779448621553884, 18.170426065162907)
+arrow = Line(Point(10.1, 19.87), Point(12.130325814536342, 18.345864661654137))
+arrow2 = Polygon(head1, head2, head3)
+arrow2.setFill("black")
+arrow.draw(win)
+arrow2.draw(win)
+
+
+# diamond
 p1 = Point(12.75, 15)
 p2 = Point(15.18, 12.05)
 p3 = Point(17.5, 15)
@@ -42,26 +54,19 @@ dia.setFill('red')
 dia.setOutline('pink')
 dia.draw(win)
 
-# arrow
-head1 = Point(11.97, 18.53)
-head2 = Point(12.08, 18.14)
-head3 = Point(11.52, 18.24)
-arrow = Line(Point(10.1, 19.87), Point(11.77, 18.37))
-arrow2 = Polygon(head1, head2, head3)
-arrow2.setFill("black")
-arrow.draw(win)
-arrow2.draw(win)
-for i in range(20, 20):
-    arrow.move(10, 10)
+inst_point = Point(15.18, 16)
+inst_point2 = Point(15.18, 15)
 
+instructions = Text(inst_point, "Happy")
+instructions2 = Text(inst_point2, "Birthday!")
+instructions.draw(win)
+instructions2.draw(win)
 
-coordinate = win.checkMouse()
-while coordinate == None:
-    coordinate = win.checkMouse()
-    print(coordinate)
-
+# arrow loop
+for i in range(1, 9):
+    arrow.move(.5, -.5)
+    arrow2.move(.5, -.5)
+    time.sleep(1)
 
 win.getMouse()
 win.close()
-
-
