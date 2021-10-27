@@ -32,7 +32,7 @@ class TestClass:
             ],
             [
                 "Doll R. Bill's average: 80.0",
-                "Frank N. Stein's average: 50.0",
+            "Frank N. Stein's average: 50.0",
                 "Howe D. Pardner's average: 30.3",
                 "Mary Thonn's average: Error: The weights are more than 100.",
                 "Nadia Seymour's average: 100.0",
