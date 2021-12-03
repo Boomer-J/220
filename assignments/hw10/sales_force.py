@@ -12,39 +12,39 @@ class SalesForce:
     """this is a class for sales person
        attributes: add_data(file_name), quota_report(quota),
        top_seller, individual_sales(employee_id)"""
-    sales_people = []
+
     def __init__(self):
-        sales_people = []
+        self.sales_people = []
+
     def add_data(self, file_name):
         in_file = open(file_name, "r")
-        list = in_file.readlines()
-        for i in list:
-            data = i.split(", ")
-            person = SalesPerson(int(data[0]), data[1])
-            sales = data[2].split()
-            for j in sales:
-                person.enter_sale(float(j))
-            self.sales_people.append(person)
-        in_file.close()
-
-
+        for line in in_file:
+            data = line.replace(",", "").split()
+            seller = SalesPerson(float(data[0]), data[1] + " " + data[2])
+            sales = data[3:]
+            i = 0
+            while i < len(sales):
+                seller.enter_sale(float(sales[i]))
+                i += 1
+            self.sales_people += [seller]
 
     def quota_report(self, quota):
         report = []
-        for i in range(len(self.sales_people)):
-            report.append([self.sales_people[i].get_id(), self.sales_people[i].get_name(), self.sales_people[i].total_sales(), self.sales_people[i].total_sales() > quota])
+        for employee in self.sales_people:
+            report.append([employee.get_id(), employee.get_name(),
+                            employee.total_sales(), employee.met_quota(quota)])
         return report
 
     def top_seller(self):
-        seller1 = self.sales_people[0]
+        seller_one = self.sales_people[0]
         best_seller = []
         for i in range(1, len(self.sales_people)):
-            if self.sales_people[i].compare_to(seller1) > 0:
-                seller1 = self.sales_people[i]
+            if self.sales_people[i].compare_to(seller_one) > 0:
+                seller_one = self.sales_people[i]
                 best_seller = []
-            elif self.sales_people[i].compare_to(seller1) == 0:
+            elif self.sales_people[i].compare_to(seller_one) == 0:
                 best_seller.append(self.sales_people[i])
-            best_seller.append(seller1)
+            best_seller.append(seller_one)
         return best_seller
 
     def individual_sales(self, employee_id):
